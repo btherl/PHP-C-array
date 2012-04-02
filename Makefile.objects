@@ -1,0 +1,8 @@
+c_array.lo: /usr/local/src/php-5.2.4_c_array/ext/c_array/c_array.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/usr/local/src/php-5.2.4_c_array/ext/c_array $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /usr/local/src/php-5.2.4_c_array/ext/c_array/c_array.c -o c_array.lo 
+$(phplibdir)/c_array.la: ./c_array.la
+	$(LIBTOOL) --mode=install cp ./c_array.la $(phplibdir)
+
+./c_array.la: $(shared_objects_c_array) $(C_ARRAY_SHARED_DEPENDENCIES)
+	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_c_array) $(C_ARRAY_SHARED_LIBADD)
+
